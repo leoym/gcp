@@ -1,3 +1,5 @@
+![GitHub Logo](https://www.gstatic.com/devrel-devsite/prod/v8ea8343deca3e735c5e491f22b0e2533427dcd1d0302777baea2667771626911/cloud/images/cloud-logo.svg)
+
 # GCP
 GCP Code Repository
 
@@ -5,8 +7,7 @@ This repository contains informations about Google Cloud
 
 https://cloud.google.com/
 
-![GitHub Logo](https://www.gstatic.com/devrel-devsite/prod/v8ea8343deca3e735c5e491f22b0e2533427dcd1d0302777baea2667771626911/cloud/images/cloud-logo.svg)
-Format: ![Alt Text](https://www.gstatic.com/devrel-devsite/prod/v8ea8343deca3e735c5e491f22b0e2533427dcd1d0302777baea2667771626911/cloud/images/cloud-logo.svg)
+:robot:
 
 ## Como criar um App NodeJS
 
