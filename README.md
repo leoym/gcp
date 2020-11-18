@@ -7,6 +7,11 @@ This repository contains informations about Google Cloud
 
 https://cloud.google.com/
 
+Documentation:
+
+https://cloud.google.com/gcp/getting-started
+
+
 :robot:
 
 ## Como criar um App NodeJS
@@ -54,3 +59,45 @@ Criar um aplicativo
 Acessar seu aplicativo
 
 O URL padrão do seu aplicativo é um subdomínio em appspot.com.
+
+
+## Como usar o Cloud Storage
+
+O Cloud Storage é um serviço para o armazenamento de objetos no Google Cloud. Primeiros passos: como usar a ferramenta gsutil
+
+https://cloud.google.com/storage/docs/quickstart-gsutil
+
+
+    gsutil mb -b on -l us-east1 gs://my-awesome-bucket/
+    gsutil cp Desktop/kitten.png gs://my-awesome-bucket
+    
+    wget https://cloud.google.com/storage/images/kitten.png
+    
+    gsutil cp gs://my-awesome-bucket/kitten.png Desktop/kitten2.png
+    gsutil ls gs://my-awesome-bucket
+    gsutil ls -l gs://my-awesome-bucket/kitten.png
+    gsutil iam ch allUsers:objectViewer gs://my-awesome-bucket
+    gsutil iam ch -d allUsers:objectViewer gs://my-awesome-bucket
+    
+    gsutil iam ch user:jane@gmail.com:objectCreator,objectViewer gs://my-awesome-bucket
+    gsutil iam ch -d user:jane@gmail.com:objectCreator,objectViewer gs://my-awesome-bucket
+    
+    gsutil rm gs://my-awesome-bucket/kitten.png
+    gsutil rm -r gs://my-awesome-bucket
+    
+    
+## Como usar o Compute Engine
+
+Guia de início rápido sobre como usar uma VM do Linux
+
+https://cloud.google.com/compute/docs/quickstart-linux
+
+
+##  Como usar o Kubernetes Engine
+
+Guia de início rápido
+
+https://cloud.google.com/kubernetes-engine/docs/quickstart
+
+   
+    
