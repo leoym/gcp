@@ -39,17 +39,17 @@ https://cloud.google.com/
 
 Criar um aplicativo
 
-Para fazer a implantação, é preciso criar um aplicativo em uma região:
+    Para fazer a implantação, é preciso criar um aplicativo em uma região:
 
-gcloud app create
+    gcloud app create
 
-Observação: se você já fez isso, pule esta etapa.
+    Observação: se você já fez isso, pule esta etapa.
 
-Como implantar com o Cloud Shell
+    Como implantar com o Cloud Shell
 
-É possível usar o Cloud Shell para implantar seu aplicativo. Para fazer isso, insira:
+    É possível usar o Cloud Shell para implantar seu aplicativo. Para fazer isso, insira:
 
-gcloud app deploy
+    gcloud app deploy
 
 Acessar seu aplicativo
 
