@@ -1,5 +1,12 @@
-# gcp
+# GCP
 GCP Code Repository
+
+This repository contains informations about Google Cloud
+
+https://cloud.google.com/
+
+![GitHub Logo](https://www.gstatic.com/devrel-devsite/prod/v8ea8343deca3e735c5e491f22)
+Format: ![Alt Text](url)
 
 ## Como criar um App NodeJS
 
