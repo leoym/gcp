@@ -99,5 +99,20 @@ Guia de início rápido
 
 https://cloud.google.com/kubernetes-engine/docs/quickstart
 
+
+Criar uma aplicação K8S
+
+https://cloud.google.com/kubernetes-engine/docs/how-to/exposing-apps?hl=pt-br#kubectl-apply
+
+Exemplo NODEJS
+
+https://cloud.google.com/kubernetes-engine/docs/quickstarts/deploying-a-language-specific-app?hl=pt-br#node.js
+
+
+## Anthos
+
+https://cloud.google.com/anthos?hl=pt-br#section-2
+
+
    
     
