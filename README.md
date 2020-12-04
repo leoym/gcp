@@ -114,5 +114,13 @@ https://cloud.google.com/kubernetes-engine/docs/quickstarts/deploying-a-language
 https://cloud.google.com/anthos?hl=pt-br#section-2
 
 
-   
+## Como usar o Terraform com o Google Cloud
+
+https://cloud.google.com/docs/terraform
+
+https://cloud.google.com/community/tutorials/getting-started-on-gcp-with-terraform
+
+https://registry.terraform.io/providers/hashicorp/google/latest/docs
+
+
     
