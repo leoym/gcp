@@ -14,6 +14,10 @@ https://cloud.google.com/gcp/getting-started
 
 :robot:
 
+## Products
+
+https://cloud.google.com/products/
+
 ## Como criar um App NodeJS
 
     git clone https://github.com/GoogleCloudPlatform/nodejs-docs-samples
