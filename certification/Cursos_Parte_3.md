@@ -1,12 +1,11 @@
-# Curso_9_Migrating to Google Cloud
+# Curso 9: Migrating to Google Cloud
 
-## Introduction to Cloud Migration
+## 1) Introduction to Cloud Migration
 
     Introduction to VM Migration
     Cost of ownership
     Reasons to move to the cloud
     Migration types
  
- ## Assessing the source environment
+ ## 2) Assessing the source environment
 
- 
