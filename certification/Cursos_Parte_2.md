@@ -307,7 +307,6 @@ kubectl apply -f pvc-demo.yaml
 
 kubectl get persistentvolumeclaim
 
-
 pod-volume-demo.yaml
 
 kind: Pod

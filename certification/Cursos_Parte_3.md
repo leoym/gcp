@@ -49,4 +49,4 @@
 
 ## 7) Interacting with Google Cloud
 
-## 8) Quotas , Pricing and Labels
+## 8) Quotas, Pricing and Labels
