@@ -1,6 +1,6 @@
-##############################################################################
-# CURSO 1  - Google Cloud Platform Fundamentals: Core Infrastructure
-##############################################################################
+====== CURSO 1  - Google Cloud Platform Fundamentals: Core Infrastructure
+
+--- 
 
 # GCP COMMANDS
 
