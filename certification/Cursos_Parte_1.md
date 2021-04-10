@@ -1,30 +1,30 @@
-====== CURSO 1  - Google Cloud Platform Fundamentals: Core Infrastructure
-
+# CURSO 1  - Google Cloud Platform Fundamentals: Core Infrastructure
+--- 
 --- 
 
 # GCP COMMANDS
 
-  GCP Cloud Administration and management
+## GCP Cloud Administration and management
 
 # 1) Working with Projects
 
 ## How to prepare your Project
 
-    $ gcloud config set project <nome-do-projeto>
+  $ gcloud config set project <nome-do-projeto>
  
 ## How to check and list zones
 
-    $ gcloud compute zones list | grep us-central1
+  $ gcloud compute zones list | grep us-central1
 
 ## How to set zone
 
-    $ gcloud config set compute/zone us-central1-a
+  $ gcloud config set compute/zone us-central1-a
 
 # 2) Working with Compute Engine
 
 ## How to create a MM instance
 
-    $ gcloud compute instances create "vm-do-leo-1" \
+  $ gcloud compute instances create "vm-do-leo-1" \
     --machine-type "n1-standard-1" \
     --image-project "debian-cloud" \
     --image "debian-9-stretch-v20190213" \
@@ -32,84 +32,81 @@
 
 ## Connect using SSH
 
-    $ gcloud compute ssh vm-do-leo-1
+  $ gcloud compute ssh vm-do-leo-1
 
 ## Runing commands inside the VM01
 
-    $ ping vm-2.us-central1-a
+  $ ping vm-2.us-central1-a
 
-    $ ssh vm-2.us-central1-a
+  $ ssh vm-2.us-central1-a
 
 ## Runing commands inside the VM02
 
-    $ sudo apt-get install nginx-light -y
-    $ sudo nano /var/www/html/index.nginx-debian.html
-    $ curl http://localhost/
-    $ exit
+  $ sudo apt-get install nginx-light -y
+  $ sudo nano /var/www/html/index.nginx-debian.html
+  $ curl http://localhost/
+  $ exit
 
 ## Runing commands inside the VM01
 
-    $ curl http://vm-2.us-central1-a/
+  $ curl http://vm-2.us-central1-a/
 
 # 3) Working with Cloud Storage
 
 ## Creating buckets - Cloud Storage bucket
 
-    $ export LOCATION=US
+  $ export LOCATION=US
+  $ export DEVSHELL_PROJECT_ID=nome-do-projeto
+  $ gcloud config set project nome-do-projeto
 
-    $ export DEVSHELL_PROJECT_ID=nome-do-projeto
-
-    $ gcloud config set project nome-do-projeto
-
-    $ gsutil mb -l $LOCATION  gs://$DEVSHELL_PROJECT_ID
-
-    $ gsutil mb gs://bucket-de-leo
+  $ gsutil mb -l $LOCATION  gs://$DEVSHELL_PROJECT_ID
+  $ gsutil mb gs://bucket-de-leo
 
 ## Copying files
 
-    $ gsutil cp gs://<bucket>/image.png image.png
-    $ gsutil cp image2.png gs://$DEVSHELL_PROJECT_ID/image2.png
-    $ gsutil cp lang_go.png gs://bucket-de-leo
+  $ gsutil cp gs://<bucket>/image.png image.png
+  $ gsutil cp image2.png gs://$DEVSHELL_PROJECT_ID/image2.png
+  $ gsutil cp lang_go.png gs://bucket-de-leo
 
 ## List files in bucket
 
-    $ gsutil ls  gs://$DEVSHELL_PROJECT_ID
-    $ gsutil ls gs://bucket-de-leo/
+  $ gsutil ls  gs://$DEVSHELL_PROJECT_ID
+  $ gsutil ls gs://bucket-de-leo/
 
 ## Giving permission
 
-    $ gsutil acl ch -u allUsers:R gs://$DEVSHELL_PROJECT_ID/image2.png
+  $ gsutil acl ch -u allUsers:R gs://$DEVSHELL_PROJECT_ID/image2.png
 
 ## Deleting file from bucket 
 
-    $ gsutil rm gs://bucket-de-leo/lang_go.png 
+  $ gsutil rm gs://bucket-de-leo/lang_go.png 
 
 ## Add image from bucket in a page
-    
-    <img src='https://<bucket>/image2.png'>
+   
+  <img src='https://<bucket>/image2.png'>
 
 # 4) Cloud SQL
 
 ## Creating MySql
 
-    database: teste-db
-    pass: MfC1GPFys2rjf52E
+  database: teste-db
+  pass: MfC1GPFys2rjf52E
 
 ## Add User
     
-    user: testeuser
+  user: testeuser
 
 ## Create connection
 
-    <IP:3306>
+  <IP:3306>
     
 ## Creating a PHP code 
 
-    $ cd /var/www/html
+  $ cd /var/www/html
 
-    $ sudo nano index.php
+  $ sudo nano index.php
 
-        <html>
+  <html>
         <head><title>Welcome to my page</title></head>
         <body>
         <h1>Welcome to my excellent blog</h1>
@@ -127,102 +124,81 @@
         }
         ?>
         </body>
-        </html>
+  </html>
 
-    $ sudo service apache2 restart
+  $ sudo service apache2 restart
 
-    http://Ip/index.php
+  http://Ip/index.php
 
 # 5) GKE
 
 ## working with GKE - Enable API
 
-    Kubernetes Engine API
-    Container Registry API
+  Kubernetes Engine API
+  Container Registry API
 
 ## Set Config
 
-    $ export MY_ZONE=us-central1-a
-    $ gcloud config set project <project>
+  $ export MY_ZONE=us-central1-a
+  $ gcloud config set project <project>
     
 ## Create adn config GKE
 
-    $ gcloud container clusters create webfrontend --zone $MY_ZONE --num-nodes 2
-    $ kubectl version
-    $ kubectl get nodes
+  $ gcloud container clusters create webfrontend --zone $MY_ZONE --num-nodes 2
+  $ kubectl version
+  $ kubectl get nodes
 
 ## Deploying
 
-    $ kubectl create deploy nginx --image=nginx:1.17.10
-
-    $ kubectl get pods
-
-    $ kubectl expose deployment nginx --port 80 --type LoadBalancer
-
-    $ kubectl get services
-
-    $ kubectl scale deployment nginx --replicas 3
-
-    $ kubectl get pods
-
-    $ kubectl get services
+  $ kubectl create deploy nginx --image=nginx:1.17.10
+  $ kubectl get pods
+  $ kubectl expose deployment nginx --port 80 --type LoadBalancer
+  $ kubectl get services
+  $ kubectl scale deployment nginx --replicas 3
+  $ kubectl get pods
+  $ kubectl get services
 
 # 6) APP Engine
 
 ## Creating APP
 
-    $ gcloud config set project <project>
+  $ gcloud config set project <project>
+  $ gcloud auth list
+  $ gcloud config list project
 
-    $ gcloud auth list
-
-    $ gcloud config list project
-
-    $ export DEVSHELL_PROJECT_ID=<project>
-
-    $ gcloud app create --project=$DEVSHELL_PROJECT_ID
+  $ export DEVSHELL_PROJECT_ID=<project>
+  $ gcloud app create --project=$DEVSHELL_PROJECT_ID
 
 ## Creating a Python APP
 
-    $ git clone https://github.com/GoogleCloudPlatform/python-docs-samples
+  $ git clone https://github.com/GoogleCloudPlatform/python-docs-samples
+  $ cd python-docs-samples/appengine/standard_python3/hello_world
 
-    $ cd python-docs-samples/appengine/standard_python3/hello_world
+  $ sudo apt-get update
+  $ sudo apt-get install virtualenv
 
-    $ sudo apt-get update
+  $ virtualenv -p python3 venv
+  $ source venv/bin/activate
 
-    $ sudo apt-get install virtualenv
-
-    $ virtualenv -p python3 venv
-
-    $ source venv/bin/activate
-
-    $ pip install  -r requirements.txt
-
-    $ cd ~/python-docs-samples/appengine/standard_python3/hello_world
-
-    $ gcloud app deploy
+  $ pip install  -r requirements.txt
+  $ cd ~/python-docs-samples/appengine/standard_python3/hello_world
+  $ gcloud app deploy
 
 # 7) Getting Started with Deployment Manager and Cloud Monitoring
 
 ## Deploying Automatically
 
     $ export MY_ZONE=qwiklabs-gcp-01-6bb2ae99d9fe
-
     $ export MY_ZONE=us-central1-a
-
     $ gsutil cp gs://cloud-training/gcpfcoreinfra/mydeploy.yaml mydeploy.yaml
-
     $ sed -i -e "s/PROJECT_ID/$DEVSHELL_PROJECT_ID/" mydeploy.yaml
-
     $ sed -i -e "s/ZONE/$MY_ZONE/" mydeploy.yaml
-
     $ cat mydeploy.yaml
-
     $ gcloud deployment-manager deployments create my-first-depl --config mydeploy.yaml
 
     value: "apt-get update; apt-get install nginx-light -y"
 
     $ gcloud deployment-manager deployments update my-first-depl --config mydeploy.yaml
-
 
     Scroll down to the bottom of the page and select Compute Engine default service account from Service account dropdown.
 
@@ -241,6 +217,7 @@
 # 8) Working with BigQuery
 
 ## Create a Dataset 
+
     Using console
 
 ## create and load a table
@@ -257,11 +234,15 @@
 
     $ bq query "select string_field_10 as request, count(*) as requestcount from logdata.accesslog group by request order by requestcount desc"
 
-##############################################################################
+---
+---
 # CURSO 2  - Essential Google Cloud Infrastructure: Foundation
-##############################################################################
+---
+---
 
 # 9) Working with Shell and persistence
+
+  ## Cloud Shell
 
     $ gcloud compute regions list
 
@@ -308,6 +289,8 @@
 
 # Subnets
 
+## Creating Subnets
+
     $ gcloud compute networks create privatenet --subnet-mode=custom
 
     $ gcloud compute networks subnets create privatesubnet-us --network=privatenet --region=us-central1 --range=172.16.0.0/24
@@ -337,59 +320,64 @@
 
     $ gcloud compute ssh vm-internal --zone us-central1-c --tunnel-through-iap
 
-##############################################################################
+---
+---
 # CURSO 3  - Essential Google Cloud Infrastructure: Foundation
-##############################################################################
+---
+---
 
-student_01_751b8d602
-qW{Ik4U,-.1NFSd
+## Documents
 
-https://cloud.google.com/compute/docs/instances/connecting-to-instance#rdp
+  https://cloud.google.com/compute/docs/instances/connecting-to-instance#rdp
 
-https://chrome.google.com/webstore/detail/chrome-rdp-for-google-clo/mpbbnannobiobpnfblimoapbephgifkm?hl=en-US
+  https://chrome.google.com/webstore/detail/chrome-rdp-for-google-clo/mpbbnannobiobpnfblimoapbephgifkm?hl=en-US
 
-sudo mkdir -p /home/minecraft
+  $ sudo mkdir -p /home/minecraft
 
-sudo mkfs.ext4 -F -E lazy_itable_init=0,\
-lazy_journal_init=0,discard \
-/dev/disk/by-id/google-minecraft-disk
+  $ sudo mkfs.ext4 -F -E lazy_itable_init=0,\
+  lazy_journal_init=0,discard \
+  /dev/disk/by-id/google-minecraft-disk
 
-sudo mount -o discard,defaults /dev/disk/by-id/google-minecraft-disk /home/minecraft
+  $ sudo mount -o discard,defaults /dev/disk/by-id/google-minecraft-disk /home/minecraft
 
-sudo apt-get update
+  $ sudo apt-get update
 
-sudo apt-get install -y default-jre-headless
+  $ sudo apt-get install -y default-jre-headless
 
+  $ cd /home/minecraft
 
-cd /home/minecraft
+  $ sudo apt-get install wget
 
-sudo apt-get install wget
+  $ sudo wget https://launcher.mojang.com/v1/objects/d0d0fe2b1dc6ab4c65554cb734270872b72dadd6/server.jar
 
-sudo wget https://launcher.mojang.com/v1/objects/d0d0fe2b1dc6ab4c65554cb734270872b72dadd6/server.jar
+  $ sudo java -Xmx1024M -Xms1024M -jar server.jar nogui
 
-sudo java -Xmx1024M -Xms1024M -jar server.jar nogui
+  $ sudo ls -l
 
-sudo ls -l
+  $ sudo nano eula.txt
 
-sudo nano eula.txt
+  $ sudo apt-get install -y screen
 
-sudo apt-get install -y screen
+  $ sudo screen -S mcs java -Xmx1024M -Xms1024M -jar server.jar nogui
 
-sudo screen -S mcs java -Xmx1024M -Xms1024M -jar server.jar nogui
-sudo screen -r mcs
+  $ sudo screen -r mcs
 
-#!/bin/bash
-screen -r mcs -X stuff '/save-all\n/save-off\n'
-/usr/bin/gsutil cp -R ${BASH_SOURCE%/*}/world gs://${YOUR_BUCKET_NAME}-minecraft-backup/$(date "+%Y%m%d-%H%M%S")-world
-screen -r
+  #!/bin/bash
+  screen -r mcs -X stuff '/save-all\n/save-off\n'
+  /usr/bin/gsutil cp -R ${BASH_SOURCE%/*}/world gs://${YOUR_BUCKET_NAME}-minecraft-backup/$(date "+%Y%m%d-%H%M%S")-world
+  screen -r
 
-##############################################################################
+---
+---
+
 # CURSO 4  - Preparing for the Google Cloud Associate Cloud Engineer Exam
-##############################################################################
 
-https://coursera.org/share/d5b806afea5d732cf2e73f141fef04ae
+---
+---
 
-Deployment Manager - Full Production [ACE]
+## Documents - Deployment Manager - Full Production [ACE]
+
+  https://coursera.org/share/d5b806afea5d732cf2e73f141fef04ae
 
 # Configurando o Projeto
 
@@ -403,160 +391,150 @@ Deployment Manager - Full Production [ACE]
 
     gcloud config set compute/zone us-central1-a
 
-
 ## 2) Configuração de um Load Balancer
 
-### Script de setup
+  ### Script de setup
 
-cat << EOF > startup.sh
-#! /bin/bash
-apt-get update
-apt-get install -y nginx
-service nginx start
-sed -i -- 's/nginx/Google Cloud Platform - '"\$HOSTNAME"'/' /var/www/html/index.nginx-debian.html
-EOF
+  cat << EOF > startup.sh
+  #! /bin/bash
+  apt-get update
+  apt-get install -y nginx
+  service nginx start
+  sed -i -- 's/nginx/Google Cloud Platform - '"\$HOSTNAME"'/' /var/www/html/index.nginx-debian.html
+  EOF
 
-### Criação de template
+  ### Criação de template
 
-gcloud compute instance-templates create nginx-template \
+  gcloud compute instance-templates create nginx-template \
          --metadata-from-file startup-script=startup.sh
 
-### Criação de Target poos
+  ### Criação de Target poos
 
-gcloud compute target-pools create nginx-pool
+  gcloud compute target-pools create nginx-pool
 
-### Criar 2 VMS instancias no pool 
-gcloud compute instance-groups managed create nginx-group \
+  ### Criar 2 VMS instancias no pool 
+
+  gcloud compute instance-groups managed create nginx-group \
          --base-instance-name nginx \
          --size 2 \
          --template nginx-template \
          --target-pool nginx-pool
 
-### List the compute engine instances and you should see all of the instances created:
+  ### List the compute engine instances and you should see all of the instances created:
 
-gcloud compute instances list
+  gcloud compute instances list
 
-### Now configure a firewall so that you can connect to the machines on port 80 via the EXTERNAL_IP addresses:
+  ### Now configure a firewall so that you can connect to the machines on port 80 via the EXTERNAL_IP addresses:
 
-gcloud compute firewall-rules create www-firewall --allow tcp:80
+  gcloud compute firewall-rules create www-firewall --allow tcp:80
 
 ## Create a Network Load Balancer
 
-### Create an L4 network load balancer targeting your instance group:
+  ### Create an L4 network load balancer targeting your instance group:
 
-gcloud compute forwarding-rules create nginx-lb \
+  gcloud compute forwarding-rules create nginx-lb \
          --region us-central1 \
          --ports=80 \
          --target-pool nginx-pool
-# List all Google Compute Engine forwarding rules in your project.
 
-gcloud compute forwarding-rules list
+## List all Google Compute Engine forwarding rules in your project.
 
-
+  gcloud compute forwarding-rules list
 
 ## Create a HTTP(s) Load Balancer
 
-### First, create a health check. Health checks verify that the instance is responding to HTTP or HTTPS traffic:
+  ### First, create a health check. Health checks verify that the instance is responding to HTTP or HTTPS traffic:
 
-gcloud compute http-health-checks create http-basic-check
+  gcloud compute http-health-checks create http-basic-check
 
-### Define an HTTP service and map a port name to the relevant port for the instance group. Now the load balancing service can forward traffic to the named port:
+  ### Define an HTTP service and map a port name to the relevant port for the instance group. Now the load balancing service can forward traffic to the named port:
 
-
-gcloud compute instance-groups managed \
+  gcloud compute instance-groups managed \
        set-named-ports nginx-group \
        --named-ports http:80
 
-### Create a backend service:
+  ### Create a backend service:
 
-gcloud compute backend-services create nginx-backend \
+  gcloud compute backend-services create nginx-backend \
       --protocol HTTP --http-health-checks http-basic-check --global
-### Define an HTTP service and map a port name to the relevant port for the instance group.
-gcloud compute instance-groups managed \
+
+  ### Define an HTTP service and map a port name to the relevant port for the instance group.
+
+  gcloud compute instance-groups managed \
        set-named-ports nginx-group \
        --named-ports http:80
 
-### Add the instance group into the backend service:
+  ### Add the instance group into the backend service:
 
-gcloud compute backend-services add-backend nginx-backend \
+  gcloud compute backend-services add-backend nginx-backend \
     --instance-group nginx-group \
     --instance-group-zone us-central1-a \
     --global
 
-### Create a default URL map that directs all incoming requests to all your instances:
+  ### Create a default URL map that directs all incoming requests to all your instances:
 
-gcloud compute url-maps create web-map \
+  gcloud compute url-maps create web-map \
     --default-service nginx-backend
 
-### Create a target HTTP proxy to route requests to your URL map:
+  ### Create a target HTTP proxy to route requests to your URL map:
 
-gcloud compute target-http-proxies create http-lb-proxy \
+  gcloud compute target-http-proxies create http-lb-proxy \
     --url-map web-map
 
-### Create a global forwarding rule to handle and route incoming requests.
+  ### Create a global forwarding rule to handle and route incoming requests.
 
-gcloud compute forwarding-rules create http-content-rule \
+  gcloud compute forwarding-rules create http-content-rule \
         --global \
         --target-http-proxy http-lb-proxy \
         --ports 80
 
-### After creating the global forwarding rule, it can take several minutes for your configuration to propagate.
+  ### After creating the global forwarding rule, it can take several minutes for your configuration to propagate.
 
-gcloud compute forwarding-rules list
+  $ gcloud compute forwarding-rules list
+  $ gcloud config set project qwiklabs-gcp-04-a2fa7d82584e  
+  $ gcloud config list project
 
-Deployment Manager - Full Production [ACE]
+## Create a virtual environment
 
-# gcloud config set project qwiklabs-gcp-04-a2fa7d82584e
-# gcloud config list project
+  ### Execute the following command to download and update the packages list.
 
-# Create a virtual environment
-
-## Execute the following command to download and update the packages list.
-
-sudo apt-get update
+  sudo apt-get update
 
 ## Python virtual environments are used to isolate package installation from the system.
 
-sudo apt-get install virtualenv
-sudo apt-get install virtualenv
-
-
-virtualenv -p python3 venv
+  sudo apt-get install virtualenv
+  sudo apt-get install virtualenv 
+  virtualenv -p python3 venv
 
 ## Activate the virtual environment.
 
-source venv/bin/activate
+  source venv/bin/activate
 
+## Clone the Deployment Manager Sample Templates
 
+  mkdir ~/dmsamples 
 
-# Clone the Deployment Manager Sample Templates
+  cd ~/dmsamples
 
+  git clone https://github.com/GoogleCloudPlatform/deploymentmanager-samples.git
 
-mkdir ~/dmsamples 
+  cd ~/dmsamples/deploymentmanager-samples/examples/v2
 
-cd ~/dmsamples
+## Customize the Deployment
 
-git clone https://github.com/GoogleCloudPlatform/deploymentmanager-samples.git
+  gcloud compute zones list
 
-cd ~/dmsamples/deploymentmanager-samples/examples/v2
+  nano nodejs.yaml
 
+  nano nodejs.py
 
-# Customize the Deployment
+  gcloud deployment-manager deployments create advanced-configuration --config nodejs.yaml
 
-gcloud compute zones list
+## verify
 
-nano nodejs.yaml
+  gcloud compute forwarding-rules list
 
-nano nodejs.py
-
-gcloud deployment-manager deployments create advanced-configuration --config nodejs.yaml
-
-# verify
-
-
-gcloud compute forwarding-rules list
-
-http://35.196.32.149:8080/?msg=po
+  http://35.196.32.149:8080/?msg=po
 
 
 # Create Uptime
@@ -567,91 +545,88 @@ http://35.196.32.149:8080/?msg=po
 
 # Load teste
 
-SSH to VM
+  SSH to VM
 
-Install ApacheBench
+  Install ApacheBench
 
-sudo apt-get update
-sudo apt-get -y install apache2-utils
+  sudo apt-get update
+  sudo apt-get -y install apache2-utils
 
-ab -n 1000 -c 100 http://35.196.78.89:8080/?msg=teste1
+  ab -n 1000 -c 100 http://35.196.78.89:8080/?msg=teste1
 
-ab -n 10000 -c 100 http://35.196.78.89:8080/?msg=teste1
+  ab -n 10000 -c 100 http://35.196.78.89:8080/?msg=teste1
 
-
-
+---
+---
 # LAB - Google Kubernetes Engine: Qwik Start [ACE]
+---
 
-gcloud config list project
+## Configure Project
 
-gcloud config set compute/zone us-central1-a
+  gcloud config list project
 
-gcloud container clusters create leo-cluster
+  gcloud config set compute/zone us-central1-a
 
-gcloud container clusters get-credentials leo-cluster
+  gcloud container clusters create leo-cluster
 
-kubectl create deployment hello-server --image=gcr.io/google-samples/hello-app:1.0
+  gcloud container clusters get-credentials leo-cluster
 
-kubectl expose deployment hello-server --type="LoadBalancer" --port 8080
+  kubectl create deployment hello-server --image=gcr.io/google-samples/hello-app:1.0
 
-kubectl get service hello-server
+  kubectl expose deployment hello-server --type="LoadBalancer" --port 8080
 
-gcloud container clusters delete leo-cluster
+  kubectl get service hello-server
 
+  gcloud container clusters delete leo-cluster
 
+## Site Reliability Troubleshooting with Cloud Monitoring APM [ACE]
 
-# vSite Reliability Troubleshooting with Cloud Monitoring APM [ACE]
+  gcloud config set project  qwiklabs-gcp-04-e770ce803cdf
 
-gcloud config set project  qwiklabs-gcp-04-e770ce803cdf
+  gcloud auth list
 
-gcloud auth list
-
-gcloud config list project
+  gcloud config list project
 
 ## Infrastructure setup
 
-gcloud config set compute/zone us-west1-b
+  gcloud config set compute/zone us-west1-b
 
+  export PROJECT_ID=$(gcloud info --format='value(config.project)')
 
-export PROJECT_ID=$(gcloud info --format='value(config.project)')
-
-gcloud container clusters list
+  gcloud container clusters list
 
 ## Create a Monitoring workspace
 
-gcloud container clusters list
+  gcloud container clusters list
 
+  gcloud container clusters get-credentials shop-cluster --zone us-west1-b
 
-gcloud container clusters get-credentials shop-cluster --zone us-west1-b
-
-kubectl get nodes
+  kubectl get nodes
 
 ## Deploy application
 
-git clone https://github.com/GoogleCloudPlatform/training-data-analyst
+  git clone https://github.com/GoogleCloudPlatform/training-data-analyst
 
-ln -s ~/training-data-analyst/blogs/microservices-demo-1 ~/microservices-demo-1
+  ln -s ~/training-data-analyst/blogs/microservices-demo-1 ~/microservices-demo-1
 
-curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && chmod +x skaffold && sudo mv skaffold /usr/local/bin
+  curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && chmod +x skaffold && sudo mv skaffold /usr/local/bin
 
-cd microservices-demo-1
-skaffold run
+  cd microservices-demo-1
+  skaffold run
 
-kubectl get pods
+  kubectl get pods
 
-export EXTERNAL_IP=$(kubectl get service frontend-external | awk 'BEGIN { cnt=0; } { cnt+=1; if (cnt > 1) print $4; }')
+  export EXTERNAL_IP=$(kubectl get service frontend-external | awk 'BEGIN { cnt=0; } { cnt+=1; if (cnt > 1) print $4; }')
 
-curl -o /dev/null -s -w "%{http_code}\n"  http://$EXTERNAL_IP
+  curl -o /dev/null -s -w "%{http_code}\n"  http://$EXTERNAL_IP
 
-./setup_csr.sh
+  ./setup_csr.sh
 
-
-##############################################################################
+---
+---
 # CURSO 5  - Essential Google Cloud Infrastructure: Core Services
-##############################################################################
-
-
-
+---
+---
 
 # Cloud IAM and Compute engine
 
@@ -663,25 +638,24 @@ curl -o /dev/null -s -w "%{http_code}\n"  http://$EXTERNAL_IP
 
 # Mysql
 
-wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy && chmod +x cloud_sql_proxy
-ls
-export SQL_CONNECTION=qwiklabs-gcp-04-05ddffa3ed86:us-central1:wordpress-db
-./cloud_sql_proxy -instances=$SQL_CONNECTION=tcp:3306 &
+  wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy && chmod +x cloud_sql_proxy
+  ls
+  export SQL_CONNECTION=qwiklabs-gcp-04-05ddffa3ed86:us-central1:wordpress-db
+  ./cloud_sql_proxy -instances=$SQL_CONNECTION=tcp:3306 &
 
-curl -H "Metadata-Flavor: Google" http://169.254.169.254/computeMetadata/v1/instance/network-interfaces/0/access-configs/0/external-ip && echo
+  curl -H "Metadata-Flavor: Google" http://169.254.169.254/computeMetadata/v1/instance/network-interfaces/0/access-configs/0/external-ip && echo
 
 # Billig and BigQuery
 
-Create Dataset.
+  Create Dataset.
 
-create table from csv - gs://cloud-training/archinfra/export-billing-example.csv
+  create table from csv - gs://cloud-training/archinfra/export-billing-example.csv
 
 ## Queries
 
-SELECT * FROM `imported_billing_data.sampleinfotable`
-WHERE Cost > 0
+  SELECT * FROM `imported_billing_data.sampleinfotable` WHERE Cost > 0
 
-SELECT
+  SELECT
   product,
   resource_type,
   start_time,
@@ -694,7 +668,7 @@ SELECT
   currency_conversion_rate,
   usage_amount,
   usage_unit
-FROM
+  FROM
   `cloud-training-prod-bucket.arch_infra.billing_data`
 
 
@@ -711,15 +685,15 @@ FROM
   currency_conversion_rate,
   usage_amount,
   usage_unit
-FROM
+  FROM
   `cloud-training-prod-bucket.arch_infra.billing_data`
-WHERE
+  WHERE
   Cost > 0
-ORDER BY end_time DESC
-LIMIT
+  ORDER BY end_time DESC
+  LIMIT
   100
 
-SELECT
+  SELECT
   product,
   resource_type,
   start_time,
@@ -732,46 +706,46 @@ SELECT
   currency_conversion_rate,
   usage_amount,
   usage_unit
-FROM
+  FROM
   `cloud-training-prod-bucket.arch_infra.billing_data`
-WHERE
+  WHERE
   cost > 3
 
 
   SELECT
   product,
   COUNT(*) AS billing_records
-FROM
+  FROM
   `cloud-training-prod-bucket.arch_infra.billing_data`
-WHERE
+  WHERE
   cost > 1
-GROUP BY
+  GROUP BY
   product
-ORDER BY
+  ORDER BY
   billing_records DESC
 
 
   SELECT
   product,
   COUNT(*) AS billing_records
-FROM
+  FROM
   `cloud-training-prod-bucket.arch_infra.billing_data`
-GROUP BY
+  GROUP BY
   product
-ORDER BY billing_records DESC
+  ORDER BY billing_records DESC
 
 
 
 
-SELECT
+  SELECT
   usage_unit,
   COUNT(*) AS billing_records
-FROM
+  FROM
   `cloud-training-prod-bucket.arch_infra.billing_data`
-WHERE cost > 0
-GROUP BY
+  WHERE cost > 0
+  GROUP BY
   usage_unit
-ORDER BY
+  ORDER BY
   billing_records DESC
 
 
@@ -779,155 +753,157 @@ ORDER BY
   SELECT
   product,
   ROUND(SUM(cost),2) AS total_cost
-FROM
+  FROM
   `cloud-training-prod-bucket.arch_infra.billing_data`
-GROUP BY
+  GROUP BY
   product
-ORDER BY
+  ORDER BY
   total_cost DESC
 
 
-# monitoring
+# Monitoring
 
-Task 6: Review
+## Task 6: Review
 
-In this lab, you learned how to:
+  In this lab, you learned how to:
 
-Monitor your projects
-Create a Cloud Monitoring workspace
-Create alerts with multiple conditions
-Add charts to dashboards
-Create resource groups
-Create uptime checks for your services
+  Monitor your projects
+  Create a Cloud Monitoring workspace
+  Create alerts with multiple conditions  
+  Add charts to dashboards
+  Create resource groups
+  Create uptime checks for your services
 
-Lab: Error Reporting and Debugging
+## Lab: Error Reporting and Debugging
 
+  Error Reporting and Debugging
 
-Error Reporting and Debugging
-
-1) Create an application
-Task 1: Create an application
-
-Task 1: Create an application
-
-mkdir appengine-hello
-cd appengine-hello
-gsutil cp gs://cloud-training/archinfra/gae-hello/* .
-
-dev_appserver.py $(pwd)
+  1) Create an application
+  Task 1: Create an application
 
 
-Deploy the application to App Engine
+  mkdir appengine-hello
+  cd appengine-hello
+  gsutil cp gs://cloud-training/archinfra/gae-hello/* .
 
-gcloud app deploy app.yaml
-
-gcloud app browse
-
-
-sed -i -e 's/webapp2/webapp22/' main.py
-
-cat main.py
-
-gcloud app deploy app.yaml --quiet
-
-gcloud app browse
+  dev_appserver.py $(pwd)
 
 
-##############################################################################
+  Deploy the application to App Engine
+
+  gcloud app deploy app.yaml
+
+  gcloud app browse
+
+
+  sed -i -e 's/webapp2/webapp22/' main.py
+
+  cat main.py
+
+  gcloud app deploy app.yaml --quiet
+
+  gcloud app browse
+
+---
+---
 # CURSO 4
-##############################################################################
+---
+---
 
-#################################################################################
 # LAB 1 - Virtual Private Networks (VPN)
-#################################################################################
 
 ## Task 1: Explore the networks and instances
-Two custom networks with VM instances have been configured for you. For the purposes of the lab, both networks are VPC networks within a Google Cloud project. However, in a real-world application, one of these networks might be in a different Google Cloud project, on-premises, or in a different cloud.
+  
+  Two custom networks with VM instances have been configured for you. For the purposes of the lab, both networks are VPC networks within a Google Cloud project. However, in a real-world application, one of these networks might be in a different Google Cloud project, on-premises, or in a different cloud.
 
-Explore the networks
-Verify that vpn-network-1 and vpn-network-2 have been created with subnets in separate regions.
+## Explore the networks
 
-In the Cloud Console, on the Navigation menu (Navigation menu), click VPC network > VPC networks.
-Note the vpn-network-1 network and its subnet-a in us-central1.
+  Verify that vpn-network-1 and vpn-network-2 have been created with subnets in separate regions.
 
-Note the vpn-network-2 network and its subnet-b in europe-west1.
+  In the Cloud Console, on the Navigation menu (Navigation menu), click VPC network > VPC networks.
 
-Explore the firewall rules
-In the navigation pane, click Firewall.
-Note the network-1-allow-ssh and network-1-allow-icmp rules for vpn-network-1.
-Note the network-2-allow-ssh and network-2-allow-icmp rules for vpn-network-2.
-These firewall rules allow SSH and ICMP traffic from anywhere.
+  Note the vpn-network-1 network and its subnet-a in us-central1.
 
-Explore the instances and their connectivity
-Currently, the VPN connection between the two networks is not established. Explore the connectivity options between the instances in the networks.
+  Note the vpn-network-2 network and its subnet-b in europe-west1.
 
-In the Cloud Console, on the Navigation menu (Navigation menu), click Compute Engine > VM instances.
-Click Columns, and select Network.
-From server-1, you should be able to ping the following IP addresses of server-2:
+  Explore the firewall rules
+  In the navigation pane, click Firewall.
+  Note the network-1-allow-ssh and network-1-allow-icmp rules for vpn-network-1.
+  Note the network-2-allow-ssh and network-2-allow-icmp rules for vpn-network-2.
+  These firewall rules allow SSH and ICMP traffic from anywhere.
 
-External IP address
+  Explore the instances and their connectivity
+  Currently, the VPN connection between the two networks is not established. Explore the connectivity options between the instances in the networks.
 
-Internal IP address
+  In the Cloud Console, on the Navigation menu (Navigation menu), click Compute Engine > VM instances.
+  Click Columns, and select Network.
+  From server-1, you should be able to ping the following IP addresses of server-2:
 
-Note the external and internal IP addresses for server-2.
+  External IP address
 
-For server-1, click SSH to launch a terminal and connect.
+  Internal IP address
 
-To test connectivity to server-2's external IP address, run the following command, replacing server-2's external IP address with the value noted earlier:
+  Note the external and internal IP addresses for server-2.
 
-ping -c 3 <Enter server-2's external IP address here>
-This works because the VM instances can communicate over the internet.
+  For server-1, click SSH to launch a terminal and connect.
 
-To test connectivity to server-2's internal IP address, run the following command, replacing server-2's internal IP address with the value noted earlier:
+  To test connectivity to server-2's external IP address, run the following command, replacing server-2's external IP address with the value noted earlier:
 
-ping -c 3 <Enter server-2's internal IP address here>
-You should see 100% packet loss when pinging the internal IP address because you don't have VPN connectivity yet.
+  ping -c 3 <Enter server-2's external IP address here>
+  
+  This works because the VM instances can communicate over the internet.
 
-Exit the SSH terminal.
-Let's try the same from server-2.
+  To test connectivity to server-2's internal IP address, run the following command, replacing server-2's internal IP address with the value noted earlier:
 
-Note the external and internal IP addresses for server-1.
+  ping -c 3 <Enter server-2's internal IP address here>
+  You should see 100% packet loss when pinging the internal IP address because you don't have VPN connectivity yet.
 
-For server-2, click SSH to launch a terminal and connect.
+  Exit the SSH terminal.
+  Let's try the same from server-2.
 
-To test connectivity to server-1's external IP address, run the following command, replacing server-1's external IP address with the value noted earlier:
+  Note the external and internal IP addresses for server-1.
 
-ping -c 3 <Enter server-1's external IP address here>
-To test connectivity to server-1's internal IP address, run the following command, replacing server-1's internal IP address with the value noted earlier:
+  For server-2, click SSH to launch a terminal and connect.
 
-ping -c 3 <Enter server-1's internal IP address here>
-You should see similar results.
+  To test connectivity to server-1's external IP address, run the following command, replacing server-1's external IP address with the value noted earlier:
 
-Exit the SSH terminal.
-Why are we testing both server-1 to server-2 and server-2 to server-1?
+  ping -c 3 <Enter server-1's external IP address here>
+  To test connectivity to server-1's internal IP address, run the following command, replacing server-1's internal IP address with the value noted earlier:
 
-For the purposes of this lab, the path from subnet-a to subnet-b is not the same as the path from subnet-b to subnet-a. You are using one tunnel to pass traffic in each direction. And if both tunnels are not established, you won't be able to ping the remote server on its internal IP address. The ping might reach the remote server, but the response can't be returned.
+  ping -c 3 <Enter server-1's internal IP address here>
+  You should see similar results.
 
-This makes it much easier to debug the lab during class. In practice, a single tunnel could be used with symmetric configuration. However, it is more common to have multiple tunnels or multiple gateways and VPNs for production work, because a single tunnel could be a single point of failure.
+  Exit the SSH terminal.
+  Why are we testing both server-1 to server-2 and server-2 to server-1?
+
+  For the purposes of this lab, the path from subnet-a to subnet-b is not the same as the path from subnet-b to subnet-a. You are using one tunnel to pass traffic in each direction. And if both tunnels are not established, you won't be able to ping the remote server on its internal IP address. The ping might reach the remote server, but the response can't be returned.
+
+  This makes it much easier to debug the lab during class. In practice, a single tunnel could be used with symmetric configuration. However, it is more common to have multiple tunnels or multiple gateways and VPNs for production work, because a single tunnel could be a single point of failure.
 
 ## Task 2: Create the VPN gateways and tunnels
-Establish private communication between the two VM instances by creating VPN gateways and tunnels between the two networks.
 
-Reserve two static IP addresses
-Reserve one static IP address for each VPN gateway.
+  Establish private communication between the two VM instances by creating VPN gateways and tunnels between the two networks.
 
-In the Cloud Console, on the Navigation menu (Navigation menu), click VPC network > External IP addresses.
+  Reserve two static IP addresses
+  Reserve one static IP address for each VPN gateway.
 
-Click Reserve static address.
+  In the Cloud Console, on the Navigation menu (Navigation menu), click VPC network > External IP addresses.
 
-Specify the following, and leave the remaining settings as their defaults:
+  Click Reserve static address.
 
-Property	Value (type value or select option as specified)
-Name	vpn-1-static-ip
-IP version	IPv4
-Region	us-central1
-Click Reserve.
+  Specify the following, and leave the remaining settings as their defaults:
 
-Repeat the same for vpn-2-static-ip.
+  Property	Value (type value or select option as specified)
+  Name	vpn-1-static-ip
+  IP version	IPv4
+  Region	us-central1
+  Click Reserve.
 
-Click Reserve static address.
+  Repeat the same for vpn-2-static-ip.
 
-Specify the following, and leave the remaining settings as their defaults:
+  Click Reserve static address.
+
+  Specify the following, and leave the remaining settings as their defaults:
 
 Property	Value (type value or select option as specified)
 Name	vpn-2-static-ip
