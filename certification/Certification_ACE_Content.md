@@ -1,4 +1,4 @@
-# Certificatio Plan: Associate Cloud Engineer
+# Certification Plan: Associate Cloud Engineer
 
 ## Certification exam guide
     
