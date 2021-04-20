@@ -18,6 +18,16 @@ https://cloud.google.com/gcp/getting-started
 
 https://cloud.google.com/products/
 
+
+## Introduction Video
+
+<!-- blank line -->
+<figure class="video_container">
+  <iframe src="https://www.youtube.com/embed/C5YGrPCZ5o8" frameborder="0" allowfullscreen="true"> </iframe>
+</figure>
+<!-- blank line -->
+
+
 ## Como criar um App NodeJS
 
     git clone https://github.com/GoogleCloudPlatform/nodejs-docs-samples
