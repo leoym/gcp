@@ -24,7 +24,7 @@ https://cloud.google.com/products/
 
 
 
-[![Watch the video]](https://www.youtube.com/embed/C5YGrPCZ5o8)
+[[Watch the video]](https://www.youtube.com/embed/C5YGrPCZ5o8)
 
 
 ## Como criar um App NodeJS
