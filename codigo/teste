@@ -1,10 +1,8 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-
-const app = express();
+var express = require('express')
+var router = express.Router()
 
 const mysql = require("mysql");
-const dbConfig = require("./app/config/db.config.js");
+const dbConfig = require("../app/config/db.config.js");
 
 // Create a connection to the database
 const connection = mysql.createConnection({
@@ -20,20 +18,7 @@ connection.connect(error => {
   console.log("Successfully connected to the database.");
 });
 
-// parse requests of content-type: application/json
-app.use(bodyParser.json());
-
-// parse requests of content-type: application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(express.static('public'))
-
-// simple route
-app.get("/", (req, res) => {
-  res.json({ message: "Welcome to lym application." });
-});
-
-app.get("/mysql", (req, res) => {
+router.get("/", (req, res) => {
 
     connection.query("SELECT * FROM customers ORDER BY id DESC LIMIT 3", (err, result) => {
     if (err) {
@@ -45,7 +30,7 @@ app.get("/mysql", (req, res) => {
     
 });
 
-app.post("/mysql", (req, res) => {
+router.post("/", (req, res) => {
 
     var email = req.body.email;
     var name = req.body.name;
@@ -61,18 +46,10 @@ app.post("/mysql", (req, res) => {
       return;
     }
 
-    console.log("created customer! ");
+    console.log("Customer created! ");
     });
 
     res.json({ message: "MYSQL" });
 });
 
-app.get("/mongo", (req, res) => {
-  res.json({ message: "MONGO" });
-});
-
-
-// set port, listen for requests
-app.listen(3002, () => {
-  console.log("Server is running on port 3002.");
-});
+module.exports = router
