@@ -1,0 +1,6 @@
+module.exports = {
+  HOST: "34",
+  USER: "developer",
+  PASSWORD: "",
+  DB: "testdb"
+};
