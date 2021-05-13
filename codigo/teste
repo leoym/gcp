@@ -1,0 +1,78 @@
+const express = require("express");
+const bodyParser = require("body-parser");
+
+const app = express();
+
+const mysql = require("mysql");
+const dbConfig = require("./app/config/db.config.js");
+
+// Create a connection to the database
+const connection = mysql.createConnection({
+  host: dbConfig.HOST,
+  user: dbConfig.USER,
+  password: dbConfig.PASSWORD,
+  database: dbConfig.DB
+});
+
+// open the MySQL connection
+connection.connect(error => {
+  if (error) throw error;
+  console.log("Successfully connected to the database.");
+});
+
+// parse requests of content-type: application/json
+app.use(bodyParser.json());
+
+// parse requests of content-type: application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.static('public'))
+
+// simple route
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to lym application." });
+});
+
+app.get("/mysql", (req, res) => {
+
+    connection.query("SELECT * FROM customers ORDER BY id DESC LIMIT 3", (err, result) => {
+    if (err) {
+      console.log("error: ", err);
+    }
+    console.log("customers: ", result);
+    res.json(result);
+    });
+    
+});
+
+app.post("/mysql", (req, res) => {
+
+    var email = req.body.email;
+    var name = req.body.name;
+    var active = req.body.active;
+
+    console.log("email: " + email);
+    console.log("name: " + name);
+    console.log("active: " + active);
+    connection.query("INSERT INTO customers (name, email,active) VALUES('" + name + "','" + email + "'," + active + ")", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    console.log("created customer! ");
+    });
+
+    res.json({ message: "MYSQL" });
+});
+
+app.get("/mongo", (req, res) => {
+  res.json({ message: "MONGO" });
+});
+
+
+// set port, listen for requests
+app.listen(3002, () => {
+  console.log("Server is running on port 3002.");
+});
