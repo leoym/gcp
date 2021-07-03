@@ -1,5 +1,7 @@
 # Working with GKE - Google Kubernetes Engine - Lab
 
+## This repo show basic gcp concepts and procedures to deploy a GKE application
+
 ----
 
 ## Lab 01 - GCP Basics
@@ -49,7 +51,7 @@
     gsutil acl get gs://$MY_BUCKET_1/cat.jpg  > acl-2.txt
     cat acl-2.txt
 
-## Config
+## Configuration
 
     gcloud config list
     gcloud auth activate-service-account --key-file credentials.json
@@ -59,11 +61,11 @@
     gsutil cp gs://$MY_BUCKET_2/cat.jpg ./cat-copy.jpg
 
     gcloud config set account user test-service-account2
-    gsutil cp gs://$MY_BUCKET_NAME_1/cat.jpg ./copy2-of-cat.jpg
+    gsutil cp gs://$MY_BUCKET_1/cat.jpg ./copy2-of-cat.jpg
     gsutil iam ch allUsers:objectViewer gs://$MY_BUCKET_1
     gsutil iam ch allUsers:objectViewer gs://$MY_BUCKET_1
 
-## Cloud Shell
+## Working with Cloud Shell
 
     git clone https://github.com/googlecodelabs/orchestrate-with-kubernetes.git
     mkdir test
@@ -94,7 +96,7 @@ index.html
     mkdir test
 
 ----
-# Lab 02
+# Lab 02 - Deploying GKE 
 
 ## 1 - Enable API 
 
@@ -103,6 +105,7 @@ index.html
   Container Registry
 
 ## 2 - Build 
+    
     nano quickstart.sh
 
     #!/bin/sh
@@ -120,7 +123,7 @@ index.html
 
     Verifiy image in registry
 
-## 3 - 
+## 3 - Using Cloud Build
 
 git clone https://github.com/GoogleCloudPlatform/training-data-analyst
 
@@ -132,7 +135,7 @@ cat cloudbuild.yaml
 
 gcloud builds submit --config cloudbuild.yaml .
 
-## 4 
+## 4 - Deploying using cloud Build and Cloud Run
 
 cd ~/ak8s/Cloud_Build/b
 cat cloudbuild.yaml
@@ -141,9 +144,10 @@ gcloud builds submit --config cloudbuild.yaml .
 echo $?
 
 
+
 ----
 
-# Lab 03 
+# Lab 03 - Deploying a GKE Cluster
 
 ## Creating a standard cluster
 
@@ -243,12 +247,9 @@ POST https://container.googleapis.com/v1beta1/projects/prj-lym-dev/zones/us-cent
   }
 }
 
-
-
 ## Edit the node pool
 
 ## Deploy an application
-
 
 ----
 
@@ -427,6 +428,7 @@ POST https://container.googleapis.com/v1beta1/projects/prj-lym-dev/zones/us-cent
   cat /var/www/html/index.html
 
   Task 3. Create StatefulSets with PVCs
+  
   kubectl delete pod pvc-demo-pod
   kubectl get pods
   kubectl apply -f statefulset-demo.yaml
