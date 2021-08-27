@@ -14,8 +14,6 @@
   
   $ k get po -A
   
-  $ k get po -all-namespaces
-  
   $ k get po --all-namespaces
   
   
