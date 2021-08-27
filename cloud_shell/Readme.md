@@ -41,15 +41,27 @@
   
   # Running a custom image
   
-  # k get po
+  $ k get po
   
-  # docker images
+  $ docker images
   
-  # kubectl run web-nginx-leo --image leoym/web-nginx
+  $ k run web-nginx-leo --image leoym/web-nginx
   
-  # k get pod
+  $ k get pod
   
-  # kubectl port-forward web-nginx-leo 8080:80
+  $ kubectl port-forward web-nginx-leo 8080:80
+  
+  # Creating Replicasets
+  
+  # Creating Deployments
+  
+  # Creating Namespaces
+  
+  # Creating Secrets
+  
+  # Creating ConfigMaps
+  
+  # Creating DaemonSets
   
   
 
