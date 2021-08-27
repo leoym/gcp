@@ -38,6 +38,20 @@
   $ kubectl port-forward nginx 8080:80
   
   $ k delete pod nginx
+  
+  # Running a custom image
+  
+  # k get po
+  
+  # docker images
+  
+  # kubectl run web-nginx-leo --image leoym/web-nginx
+  
+  # k get pod
+  
+  # kubectl port-forward web-nginx-leo 8080:80
+  
+  
 
 ----
 
