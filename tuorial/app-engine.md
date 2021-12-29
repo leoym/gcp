@@ -214,6 +214,37 @@ FROM (
 
 
 ---
+# LAB - Cloud Audit Logs
+
+
+Task 2. Generate some admin and data access activity
+The data access logs are now enabled for Cloud Storage. Use Cloud Shell to upload a file to a new storage bucket, create a network, create a VM, and then examine the Cloud Audit Logs.
+
+Open or switch to your Cloud Shell terminal.
+
+Use gsutil to create a Cloud Storage bucket with the same name as your project.
+
+gsutil mb gs://$DEVSHELL_PROJECT_ID
+Make sure the bucket successfully created.
+
+gsutil ls
+Create a simple "Hello World" type of text file and upload it to your bucket.
+
+echo "Hello World!" > sample.txt
+gsutil cp sample.txt gs://$DEVSHELL_PROJECT_ID
+Verify the file is in the bucket.
+
+gsutil ls gs://$DEVSHELL_PROJECT_ID
+Create a new auto mode network named mynetwork, then create a new virtual machine and place it on the new network.
+
+gcloud compute networks create mynetwork --subnet-mode=auto
+gcloud compute instances create default-us-vm \
+--zone=us-central1-a --network=mynetwork
+Delete the storage bucket.
+
+gsutil rm -r gs://$DEVSHELL_PROJECT_ID
+
+---
 
 # LAB - Application Performance Management
 
