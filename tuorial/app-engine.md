@@ -1,6 +1,6 @@
 Alertas
 
-Download the Code	
+1) Download the Code	
 
 	git clone https://github.com/GoogleCloudPlatform/training-data-analyst.git
 
@@ -10,23 +10,32 @@ Edit the Source code
 
 	edit main.py
 
-Run the application
+ Run the application
 
 	sudo pip3 install -r requirements.txt
 	python3 main.py
 
-Deploy App
+2) Deploy App
 
 	vi app.yaml
 
 		runtime: python37
 
 
+	gcloud app create --region=us-central
 
-		Check logs
+	gcloud app deploy --version=one --quiet
+	
 
-gcloud app create --region=us-central4
+3) Check logs
 
-gcloud app deploy --version=one --quiet
+	ON Web Console go to
 
+	App Engine > Versions > Diagnose > Logs
+
+4) Create an App Engine latency alert
+
+Go to 
+
+	Monitoring > Metrics Explorerr
 
